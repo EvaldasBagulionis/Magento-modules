@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="bbbImportProductsRun" xsi:type="object">Vendor\ProductImport\Console\ImportProducts</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Vendor\ProductImport\Model\Mapper\ProductMapper">
+        <arguments>
+            <argument name="attributeSetProcessorCollection" xsi:type="array">
+                <item name="9" xsi:type="object">Vendor\ProductImport\Model\Processor\AttributeSets\ComputerProcessor</item>
+                <item name="10" xsi:type="object">Vendor\ProductImport\Model\Processor\AttributeSets\PhoneProcessor</item>
+                <item name="11" xsi:type="object">Vendor\ProductImport\Model\Processor\AttributeSets\WirelessProcessor</item>
+                <item name="12" xsi:type="object">Vendor\ProductImport\Model\Processor\AttributeSets\CaseProcessor</item>
+                <item name="13" xsi:type="object">Vendor\ProductImport\Model\Processor\AttributeSets\HeadphonesProcessor</item>
+                <item name="14" xsi:type="object">Vendor\ProductImport\Model\Processor\AttributeSets\SpeakerProcessor</item>
+                <item name="15" xsi:type="object">Vendor\ProductImport\Model\Processor\AttributeSets\WearablesProcessor</item>
+                <item name="16" xsi:type="object">Vendor\ProductImport\Model\Processor\AttributeSets\DrivesProcessor</item>
+                <item name="17" xsi:type="object">Vendor\ProductImport\Model\Processor\AttributeSets\MiscellaneousProcessor</item>
+                <item name="20" xsi:type="object">Vendor\ProductImport\Model\Processor\AttributeSets\OtherProcessor</item>
+            </argument>
+        </arguments>
+    </type>
+    <!--    Logger -->
+    <virtualType name="Vendor\ProductImport\Logger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="debug" xsi:type="object">Vendor\ProductImport\Logger\Handler\Debug</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Vendor\ProductImport\Model\ProductImporter">
+        <arguments>
+            <argument name="logger" xsi:type="object">Vendor\ProductImport\Logger</argument>
+        </arguments>
+    </type>
+    <type name="Vendor\ProductImport\Model\Mapper\ProductMapper">
+        <arguments>
+            <argument name="logger" xsi:type="object">Vendor\ProductImport\Logger</argument>
+        </arguments>
+    </type>
+    <type name="Vendor\ProductImport\Model\Processor\AttributeSets\BaseProcessor">
+        <arguments>
+            <argument name="logger" xsi:type="object">Vendor\ProductImport\Logger</argument>
+        </arguments>
+    </type>
+    <!--    Create ProductProxy with extended Product class to override _saveProductCategories method -->
+    <!--    Name without path was used because if used with path setup:di:compile gives "Invalid proxy class for..." error -->
+    <virtualType name="ProductImportModdedProxy" type="Magento\CatalogImportExport\Model\Import\Product\Proxy">
+        <arguments>
+            <argument name="instanceName" xsi:type="string">Vendor\ProductImport\Model\Import\ModdedProduct
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Vendor\ProductImport\Model\ProductImporter">
+        <arguments>
+            <argument name="productImportProxy" xsi:type="object">ProductImportModdedProxy</argument>
+        </arguments>
+    </type>
+</config>

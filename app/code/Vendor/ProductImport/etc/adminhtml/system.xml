@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="bbb_import" sortOrder="20" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+            <group id="product" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1"
+                   translate="label">
+                <label>Product Import</label>
+                <field id="bbb_product_import_enable" type="select" sortOrder="10" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Enable Product Import</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="debug_mode" type="select" sortOrder="15" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Debug Mode</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Enables import data logging]]></comment>
+                </field>
+                <field id="child_products_url" type="text" sortOrder="20" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Child products url</label>
+                </field>
+                <field id="parent_products_url" type="text" sortOrder="30" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Parent products url</label>
+                </field>
+                <field id="attribute_set_classes" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Attribute set classes</label>
+                    <frontend_model>Vendor\ProductImport\Block\Adminhtml\Form\Field\AttributeSetByProductClasses</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                    <comment><![CDATA[Products with provided classes will be given that attribute set]]></comment>
+                </field>
+                <field id="meta_description_suffix" type="text" sortOrder="50" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Meta Description Suffix</label>
+                    <comment><![CDATA[Will be added at the end of every product meta description]]></comment>
+                </field>
+                <field id="skip_configurable_skus" type="text" sortOrder="60" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Skip Configurable Skus</label>
+                    <comment><![CDATA[Configurable products with these skus will not be imported/updated]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
