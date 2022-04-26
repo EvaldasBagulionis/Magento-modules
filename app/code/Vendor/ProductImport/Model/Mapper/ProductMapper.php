@@ -24,7 +24,6 @@ use Psr\Log\LoggerInterface;
 
 class ProductMapper
 {
-
     // Core info
     public const SKU = 'Code';
     public const NAME = 'Descr';

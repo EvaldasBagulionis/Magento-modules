@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Vendor\ProductImport\Model;
 
-class Config extends \CreationLabs\Admin\Model\Config
+class Config extends \Vendor\Admin\Model\Config
 {
     public const XML_PATH_HANSA_PRODUCT_IMPORT = 'bbb_import/product/';
 

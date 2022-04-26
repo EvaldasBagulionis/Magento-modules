@@ -22,9 +22,6 @@ class ImportProducts extends Command
         $this->productImport = $productImport;
     }
 
-    /**
-     * @author CreationLabs
-     */
     protected function configure(): void
     {
         parent::configure();

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CreationLabs\ProductImport\Model\Processor\AttributeSets;
+namespace Vendor\ProductImport\Model\Processor\AttributeSets;
 
 use SimpleXMLElement;
 
